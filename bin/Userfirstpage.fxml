@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserfirstpageController">
+   <children>
+      <AnchorPane prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #ffffff;" VBox.vgrow="ALWAYS">
+         <children>
+            <Pane layoutY="-4.0" prefHeight="511.0" prefWidth="450.0" style="-fx-background-color: #7a0000;">
+               <children>
+                  <ImageView fitHeight="481.0" fitWidth="450.0" layoutY="120.0">
+                     <image>
+                        <Image url="@../../../Downloads/CloudIcon.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="userloginbutton" layoutX="26.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleUserLoginButton" prefHeight="42.0" prefWidth="395.0" style="-fx-text-fill: white; -fx-background-color: black; -fx-font-weight: bold; -fx-background-radius: 20; -fx-font-size: 12;" text="Log in">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <ImageView fitHeight="151.0" fitWidth="174.0" layoutX="136.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Downloads/MotorIcon.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="132.0" layoutY="93.0" prefHeight="54.0" prefWidth="193.0" text="IRIDEMOTO" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="33.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Button fx:id="usersignupbutton" layoutX="27.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleUserSignupButton" prefHeight="42.0" prefWidth="395.0" style="-fx-text-fill: black; -fx-background-color: white; -fx-font-weight: bold; -fx-background-radius: 20; -fx-font-size: 12; -fx-border-color: black; -fx-border-radius: 20;" text="Sign up">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="adminbutton" layoutX="166.0" layoutY="655.0" mnemonicParsing="false" onAction="#handleAdminButton" style="-fx-background-color: white;" text="Are you an admin?">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

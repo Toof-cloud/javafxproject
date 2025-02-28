@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox alignment="CENTER_LEFT" prefHeight="600.0" prefWidth="900.0" spacing="10.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminloginController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="600.0" prefWidth="900.0" VBox.vgrow="ALWAYS">
+      <children>
+            <Pane layoutY="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0">
+               <children>
+                  <TextField fx:id="usernametextfield" layoutX="68.0" layoutY="219.0" onAction="#loginbuttonhandler" prefHeight="34.0" prefWidth="375.0" promptText="Enter Username" style="-fx-background-radius: 10; -fx-font-size: 15px; -fx-border-color: #000000; -fx-border-radius: 10;">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </TextField>
+                  <TextField fx:id="passwordtextfield" layoutX="68.0" layoutY="318.0" onAction="#loginbuttonhandler" prefHeight="34.0" prefWidth="375.0" promptText="Enter Password" style="-fx-background-radius: 10; -fx-font-size: 15px; -fx-border-color: #000000; -fx-border-radius: 10;">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </TextField>
+                  <Label fx:id="passwordlabel" layoutX="110.0" layoutY="279.0" text="Password">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="usernamelabel" layoutX="107.0" layoutY="184.0" text="Username">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="98.0" layoutY="114.0" prefHeight="36.0" prefWidth="318.0" text="ADMIN PANEL LOGIN " textFill="#a60000">
+                     <font>
+                        <Font name="Arial" size="30.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="loginbuton" alignment="CENTER" layoutX="164.0" layoutY="389.0" mnemonicParsing="false" onAction="#loginbuttonhandler" prefHeight="26.0" prefWidth="185.0" style="-fx-background-color: #a60000; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-border-color: black; -fx-border-radius: 8;" text="Login" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="77.0" layoutY="184.0">
+                     <image>
+                        <Image url="@../../../Downloads/user%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="76.0" layoutY="279.0">
+                     <image>
+                        <Image url="@../../../Downloads/lock.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="returntouserbutton" layoutX="164.0" layoutY="448.0" mnemonicParsing="false" onAction="#returntouserpagehandler" prefHeight="36.0" prefWidth="185.0" style="-fx-background-color: #a60000; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: black;" text="Return to App">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <ImageView fitHeight="604.0" fitWidth="375.0" layoutX="525.0" layoutY="-4.0">
+                     <image>
+                        <Image url="@../../../Downloads/476503334_1782362729210803_8108060797921505154_n.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UseractivitypageController">
+   <children>
+      <Pane prefHeight="58.0" prefWidth="450.0" style="-fx-background-color: #7a0000;" />
+      <Button fx:id="cshomebutton" layoutX="39.0" layoutY="602.0" mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="50.0" prefWidth="47.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Downloads/home-icon-silhouette.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="csactivitybutton" layoutX="150.0" layoutY="610.0" mnemonicParsing="false" onAction="#handleActivityButton" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Downloads/activity.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="csmessagesbutton" layoutX="245.0" layoutY="609.0" mnemonicParsing="false" onAction="#handleMessagesButton" prefHeight="38.0" prefWidth="32.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="46.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Downloads/chatting.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="csaccountbutton" layoutX="346.0" layoutY="610.0" mnemonicParsing="false" onAction="#handleAccountButton" prefHeight="43.0" prefWidth="51.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Downloads/user.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="47.0" layoutY="652.0" prefHeight="17.0" prefWidth="34.0" text="Home" />
+      <Label layoutX="153.0" layoutY="653.0" prefHeight="17.0" prefWidth="48.0" text="Activity" />
+      <Label layoutX="245.0" layoutY="654.0" prefHeight="17.0" prefWidth="69.0" text="Messages" />
+      <Label layoutX="349.0" layoutY="653.0" prefHeight="17.0" prefWidth="48.0" text="Account" />
+      <Label layoutX="20.0" layoutY="73.0" prefHeight="50.0" prefWidth="166.0" text="Activity">
+         <font>
+            <Font name="Arial Bold" size="43.0" />
+         </font>
+      </Label>
+      <TableView fx:id="transactoiontable" layoutX="20.0" layoutY="179.0" prefHeight="402.0" prefWidth="408.0" style="-fx-border-color: black;">
+        <columns>
+          <TableColumn fx:id="transactionidcol" prefWidth="87.0" text="Transaction ID" />
+          <TableColumn fx:id="bookingidcol" prefWidth="69.0" text="Booking ID" />
+            <TableColumn fx:id="customeridcol" prefWidth="81.0" text="Customer ID" />
+            <TableColumn fx:id="transactiondatecol" prefWidth="187.0" text="Transaction Date" />
+            <TableColumn fx:id="pickuptimecol" prefWidth="166.0" text="Pickup TIme" />
+            <TableColumn fx:id="arrivaltimecol" prefWidth="167.0" text="Arrival Time" />
+            <TableColumn fx:id="amountpaidcol" minWidth="0.0" prefWidth="96.0" text="Amount Paid" />
+            <TableColumn fx:id="paymentstatuscol" minWidth="0.0" prefWidth="107.0" text="Payment Status" />
+        </columns>
+      </TableView>
+      <Label layoutX="21.0" layoutY="122.0" text="Here are the lsit of your current transactions. ">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Line endX="350.9999694824219" layoutX="99.0" layoutY="164.0" startX="-100.0" strokeLineJoin="ROUND" strokeType="OUTSIDE" style="-fx-stroke: #E0E0E0;" />
+   </children>
+</AnchorPane>
