@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Userloginpage1Controller">
+   <children>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="450.0">
+         <children>
+            <Pane layoutY="-1.0" prefHeight="708.0" prefWidth="450.0" style="-fx-background-color: #7a0000;">
+               <children>
+                  <ImageView fitHeight="194.0" fitWidth="450.0" layoutX="1.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Downloads/CloudIcon2.png" />
+                     </image>
+                  </ImageView>
+                  <Button id="glass" fx:id="backbutton" ellipsisString="" layoutX="27.0" layoutY="39.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="0.0" prefWidth="0.0" stylesheets="@../../../Downloads/stylesheet.css">
+                     <graphic>
+                        <ImageView fitHeight="36.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Downloads/BackButtonIcon.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label layoutX="100.0" layoutY="136.0" prefHeight="54.0" prefWidth="251.0" text="IRIDEMOTO" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="43.0" />
+                     </font>
+                  </Label>
+                  <Button id="glass" fx:id="continuewithgooglebutton1" layoutX="29.0" layoutY="460.0" mnemonicParsing="false" onAction="#handleContinueWithGoogleButton" prefHeight="42.0" prefWidth="395.0" style="-fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 20; -fx-font-size: 14; -fx-border-color: black; -fx-border-radius: 20;" stylesheets="@../../../Downloads/stylesheet.css" text="Continue with Google">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button id="glass" fx:id="continuewithmobnum1" layoutX="28.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleContinueWithMobileNumButton" prefHeight="42.0" prefWidth="395.0" style="-fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 20; -fx-font-size: 14; -fx-border-color: black; -fx-border-radius: 20;" stylesheets="@../../../Downloads/stylesheet.css" text="Continue with Mobile Number">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="21.0" fitWidth="25.0" layoutX="51.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Downloads/google.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="21.0" fitWidth="25.0" layoutX="51.0" layoutY="561.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Downloads/telephone-call.png" />
+                     </image>
+                  </ImageView>
+                  <Line endX="62.0" fill="WHITE" layoutX="142.0" layoutY="525.0" startX="-109.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" />
+                  <Label layoutX="215.0" layoutY="511.0" prefHeight="21.0" prefWidth="21.0" text="or" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Line endX="36.0" fill="WHITE" layoutX="386.0" layoutY="526.0" startX="-142.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

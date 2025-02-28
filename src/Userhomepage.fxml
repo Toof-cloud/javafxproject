@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserhomepageController">
+   <children>
+      <ImageView fitHeight="85.0" fitWidth="86.0" layoutX="25.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Downloads/peach-circle-icon.png" />
+         </image>
+      </ImageView>
+      <Pane prefHeight="125.0" prefWidth="450.0" style="-fx-background-color: #7a0000;">
+         <children>
+            <Label layoutX="20.0" layoutY="20.0" prefHeight="54.0" prefWidth="322.0" text="Welcome to IRideMoto" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="54.0" prefHeight="50.0" prefWidth="345.0" text="Swift rides, anytime," textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="74.0" prefHeight="50.0" prefWidth="160.0" text="anywhere you go!" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="105.0" fitWidth="113.0" layoutX="331.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Downloads/MotorIcon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Button fx:id="cshomebutton" layoutX="39.0" layoutY="602.0" mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="50.0" prefWidth="47.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Downloads/home-icon-silhouette.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="csactivitybutton" layoutX="150.0" layoutY="610.0" mnemonicParsing="false" onAction="#handleActivityButton" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Downloads/activity.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="csmessagesbutton" layoutX="245.0" layoutY="609.0" mnemonicParsing="false" onAction="#handleMessagesButton" prefHeight="38.0" prefWidth="32.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="46.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Downloads/chatting.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="csaccountbutton" layoutX="346.0" layoutY="610.0" mnemonicParsing="false" onAction="#handleAccountButton" prefHeight="43.0" prefWidth="51.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Downloads/user.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="csridebutton" layoutX="39.0" layoutY="167.0" mnemonicParsing="false" onAction="#handleRideButton" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Downloads/motorbike.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label layoutX="41.0" layoutY="234.0" text="MotoTaxi">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="47.0" layoutY="652.0" prefHeight="17.0" prefWidth="34.0" text="Home" />
+      <Label layoutX="153.0" layoutY="653.0" prefHeight="17.0" prefWidth="48.0" text="Activity" />
+      <Label layoutX="245.0" layoutY="654.0" prefHeight="17.0" prefWidth="69.0" text="Messages" />
+      <Label layoutX="349.0" layoutY="653.0" prefHeight="17.0" prefWidth="48.0" text="Account" />
+   </children>
+</AnchorPane>
