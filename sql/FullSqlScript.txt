@@ -1,0 +1,236 @@
+SHOW CREATE TABLE contacttable;
+SHOW CREATE TABLE customertable;
+SHOW CREATE TABLE fare_matrix;
+SHOW CREATE TABLE locationtable;
+SHOW CREATE TABLE paymentmethod;
+SHOW CREATE TABLE promotable;
+SHOW CREATE TABLE riderlocationtable;
+SHOW CREATE TABLE riderratingtable;
+SHOW CREATE TABLE ridertable;
+SHOW CREATE TABLE transactiontable;
+SHOW CREATE TABLE users;
+SHOW CREATE TABLE vehicletable;
+ -- ----------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE `contacttable` (
+   `Customer_id` varchar(7) NOT NULL,
+   `ContactNum` varchar(15) NOT NULL,
+   `Email` varchar(40) NOT NULL,
+   PRIMARY KEY (`Customer_id`),
+   UNIQUE KEY `Email` (`Email`),
+   CONSTRAINT `contacttable_ibfk_1` FOREIGN KEY (`Customer_id`) REFERENCES `customertable` (`Customer_id`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+  -- ----------------------------------------------------------------------------------------------------------------------------
+ CREATE TABLE `customertable` (
+   `Customer_id` varchar(7) NOT NULL,
+   `CustomerFullName` varchar(50) NOT NULL,
+   `Password` varchar(255) NOT NULL,
+   PRIMARY KEY (`Customer_id`),
+   UNIQUE KEY `CustomerFullName` (`CustomerFullName`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+ DELIMITER //
+
+CREATE FUNCTION getNextCustomerID() RETURNS VARCHAR(7)
+DETERMINISTIC
+BEGIN
+    DECLARE newID VARCHAR(7);
+    DECLARE lastID INT;
+
+    SELECT MAX(CAST(SUBSTRING(Customer_id, 3) AS UNSIGNED)) INTO lastID FROM CustomerTable;
+
+    IF lastID IS NULL THEN
+        SET lastID = 0;
+    END IF;
+
+    SET newID = CONCAT('C-', LPAD(lastID + 1, 3, '0'));
+
+    RETURN newID;
+END //
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE TRIGGER before_insert_customer
+BEFORE INSERT ON CustomerTable
+FOR EACH ROW
+BEGIN
+    DECLARE next_id INT;
+
+    -- Find the highest existing numeric part of Customer_id and increment it
+    SELECT IFNULL(MAX(CAST(SUBSTRING(Customer_id, 3, 3) AS UNSIGNED)), 0) + 1 INTO next_id
+    FROM CustomerTable;
+
+    -- Generate the new Customer_id in the format 'C-XXX'
+    SET NEW.Customer_id = CONCAT('C-', LPAD(next_id, 3, '0'));
+END $$
+
+DELIMITER ;
+
+SELECT 
+    C.Customer_id,
+    C.CustomerFullName,
+    C.Password,
+    L.City,
+    L.Zip,
+    L.Street,
+    CT.ContactNum,
+    CT.Email
+FROM 
+    CustomerTable C
+INNER JOIN 
+    LocationTable L ON C.Customer_id = L.Customer_id
+INNER JOIN 
+    ContactTable CT ON C.Customer_id = CT.Customer_id;
+ -- ----------------------------------------------------------------------------------------------------------------------------
+ CREATE TABLE `fare_matrix` (
+   `origin` varchar(50) NOT NULL,
+   `destination` varchar(50) NOT NULL,
+   `fare` decimal(5,2) DEFAULT NULL,
+   `distance_km` decimal(5,2) DEFAULT NULL,
+   PRIMARY KEY (`origin`,`destination`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+  -- ----------------------------------------------------------------------------------------------------------------------------
+ CREATE TABLE `locationtable` (
+   `Customer_id` varchar(7) NOT NULL,
+   `City` varchar(25) NOT NULL,
+   `Zip` int NOT NULL,
+   `Street` varchar(50) NOT NULL,
+   PRIMARY KEY (`Customer_id`),
+   CONSTRAINT `locationtable_ibfk_1` FOREIGN KEY (`Customer_id`) REFERENCES `customertable` (`Customer_id`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+  -- ----------------------------------------------------------------------------------------------------------------------------
+ CREATE TABLE `fare_matrix` (
+   `origin` varchar(50) NOT NULL,
+   `destination` varchar(50) NOT NULL,
+   `fare` decimal(5,2) DEFAULT NULL,
+   `distance_km` decimal(5,2) DEFAULT NULL,
+   PRIMARY KEY (`origin`,`destination`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+  -- ----------------------------------------------------------------------------------------------------------------------------
+ CREATE TABLE `promotable` (
+   `Promo` varchar(50) NOT NULL,
+   `Percentage` int DEFAULT NULL,
+   PRIMARY KEY (`Promo`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+  -- ----------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE `riderlocationtable` (
+   `Rider_id` varchar(7) DEFAULT NULL,
+   `Zip` varchar(10) NOT NULL,
+   `City` varchar(50) NOT NULL,
+   `Street` varchar(50) NOT NULL,
+   KEY `Rider_id` (`Rider_id`),
+   CONSTRAINT `riderlocationtable_ibfk_1` FOREIGN KEY (`Rider_id`) REFERENCES `ridertable` (`Rider_id`) ON DELETE CASCADE
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+  -- ----------------------------------------------------------------------------------------------------------------------------
+ CREATE TABLE `riderratingtable` (
+   `Rider_id` varchar(7) DEFAULT NULL,
+   `Rating` tinyint NOT NULL,
+   `ShipOnTime` varchar(10) NOT NULL,
+   KEY `Rider_id` (`Rider_id`),
+   CONSTRAINT `riderratingtable_ibfk_1` FOREIGN KEY (`Rider_id`) REFERENCES `ridertable` (`Rider_id`) ON DELETE CASCADE,
+   CONSTRAINT `riderratingtable_chk_1` CHECK ((`Rating` between 1 and 5))
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+ -- ---------------------------------------------------------------------------------------------------------------------------- 
+ CREATE TABLE `ridertable` (
+   `Rider_id` varchar(7) NOT NULL,
+   `RiderFullname` varchar(50) NOT NULL,
+   `RiderContactNo` varchar(15) NOT NULL,
+   PRIMARY KEY (`Rider_id`),
+   UNIQUE KEY `RiderFullname` (`RiderFullname`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+ SELECT 
+    R.Rider_id,
+    R.RiderFullname,
+    R.RiderContactNo,
+    RL.Zip,
+    RL.City,
+    RL.Street,
+    V.PlateNumber,
+    V.Vehicle,
+    RR.Rating,
+    RR.ShipOnTime
+FROM 
+    RiderTable R
+LEFT JOIN 
+    RiderLocationTable RL ON R.Rider_id = RL.Rider_id
+LEFT JOIN 
+    VehicleTable V ON R.Rider_id = V.Rider_id  
+LEFT JOIN 
+    RiderRatingTable RR ON R.Rider_id = RR.Rider_id
+ORDER BY 
+    R.Rider_id ASC;
+
+DELIMITER //
+
+CREATE FUNCTION getNextRiderID() RETURNS VARCHAR(7)
+DETERMINISTIC
+BEGIN
+    DECLARE newID VARCHAR(7);
+    DECLARE lastID INT;
+
+    SELECT MAX(CAST(SUBSTRING(Rider_id, 3) AS UNSIGNED)) INTO lastID FROM RiderTable;
+
+    IF lastID IS NULL THEN
+        SET lastID = 0;
+    END IF;
+
+    SET newID = CONCAT('R-', LPAD(lastID + 1, 3, '0'));
+
+    RETURN newID;
+END //
+
+  -- ----------------------------------------------------------------------------------------------------------------------------
+ CREATE TABLE `transactiontable` (
+   `Transaction_id` varchar(10) NOT NULL,
+   `Booking_id` varchar(10) NOT NULL,
+   `Customer_id` varchar(7) DEFAULT NULL,
+   `Rider_id` varchar(7) DEFAULT NULL,
+   `transaction_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   `pickup_time` datetime NOT NULL,
+   `arrival_time` datetime NOT NULL,
+   `amount_paid` decimal(10,2) NOT NULL,
+   `payment_status` enum('Pending','Paid','Failed') NOT NULL,
+   PRIMARY KEY (`Transaction_id`),
+   UNIQUE KEY `Booking_id` (`Booking_id`),
+   KEY `Customer_id` (`Customer_id`),
+   KEY `Rider_id` (`Rider_id`),
+   CONSTRAINT `transactiontable_ibfk_1` FOREIGN KEY (`Customer_id`) REFERENCES `customertable` (`Customer_id`) ON DELETE CASCADE,
+   CONSTRAINT `transactiontable_ibfk_2` FOREIGN KEY (`Rider_id`) REFERENCES `ridertable` (`Rider_id`) ON DELETE SET NULL,
+   CONSTRAINT `transactiontable_chk_1` CHECK ((`amount_paid` >= 0))
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+ -- ----------------------------------------------------------------------------------------------------------------------------
+ CREATE TABLE `users` (
+   `User_id` varchar(10) NOT NULL,
+   `Username` varchar(50) NOT NULL,
+   `Password` varchar(50) NOT NULL,
+   `AccountCreated` datetime DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (`User_id`),
+   UNIQUE KEY `Username` (`Username`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+ DELIMITER $$
+
+CREATE FUNCTION getNextAdminID() RETURNS VARCHAR(10) DETERMINISTIC
+BEGIN
+    DECLARE new_id INT;
+    DECLARE formatted_id VARCHAR(10);
+    
+    -- Get the last numeric part of the ID
+    SELECT IFNULL(MAX(CAST(SUBSTRING(User_id, 5) AS UNSIGNED)), 0) + 1 INTO new_id FROM users WHERE User_id LIKE 'ADM-%';
+    
+    -- Format as ADM-001, ADM-002, etc.
+    SET formatted_id = CONCAT('ADM-', LPAD(new_id, 3, '0'));
+    
+    RETURN formatted_id;
+END$$
+
+DELIMITER ;
+ -- ----------------------------------------------------------------------------------------------------------------------------
+ CREATE TABLE `vehicletable` (
+   `PlateNumber` varchar(7) NOT NULL,
+   `Vehicle` varchar(50) NOT NULL,
+   `Rider_id` varchar(7) DEFAULT NULL,
+   PRIMARY KEY (`PlateNumber`),
+   UNIQUE KEY `Vehicle` (`Vehicle`),
+   KEY `Rider_id` (`Rider_id`),
+   CONSTRAINT `vehicletable_ibfk_1` FOREIGN KEY (`Rider_id`) REFERENCES `ridertable` (`Rider_id`) ON DELETE CASCADE
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
