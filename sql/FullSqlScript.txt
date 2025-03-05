@@ -107,6 +107,15 @@ INNER JOIN
    PRIMARY KEY (`origin`,`destination`)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
   -- ----------------------------------------------------------------------------------------------------------------------------
+  CREATE TABLE `paymentmethod` (
+   `PaymentID` varchar(10) NOT NULL,
+   `PaymentMethod` varchar(50) DEFAULT NULL,
+   `Promo` varchar(50) DEFAULT NULL,
+   PRIMARY KEY (`PaymentID`),
+   KEY `Promo` (`Promo`),
+   CONSTRAINT `paymentmethod_ibfk_1` FOREIGN KEY (`Promo`) REFERENCES `promotable` (`Promo`) ON DELETE SET NULL
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+ -- ----------------------------------------------------------------------------------------------------------------------------
  CREATE TABLE `promotable` (
    `Promo` varchar(50) NOT NULL,
    `Percentage` int DEFAULT NULL,
